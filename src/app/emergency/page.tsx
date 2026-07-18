@@ -61,7 +61,7 @@ export default function EmergencyPage() {
           <div>
             <h1 className="font-display text-xl font-bold text-white">Emergency Grounding Portal</h1>
             <p className="text-sm text-slate-300 mt-1 leading-relaxed">
-              Cravings and acute anxiety peak within **10 to 15 minutes**. Let's slow your physical impulse, reframe your adrenaline, and step through immediate cognitive containment.
+              Cravings and acute anxiety peak within **10 to 15 minutes**. Let&apos;s slow your physical impulse, reframe your adrenaline, and step through immediate cognitive containment.
             </p>
           </div>
         </div>

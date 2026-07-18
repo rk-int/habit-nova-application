@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import Sidebar from '@/components/dashboard/Sidebar';
-import { useStore, JournalEntry } from '@/store/useStore';
-import { BookOpen, Sparkles, Smile, ShieldAlert, AlertTriangle } from 'lucide-react';
+import { useStore } from '@/store/useStore';
+import { BookOpen, Sparkles, AlertTriangle } from 'lucide-react';
 
 export default function JournalPage() {
   const { journals, addJournalEntry } = useStore();
@@ -12,7 +12,10 @@ export default function JournalPage() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
+    const timer = setTimeout(() => {
+      setMounted(true);
+    }, 0);
+    return () => clearTimeout(timer);
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -98,7 +101,9 @@ export default function JournalPage() {
             Write your Daily Reflection
           </h3>
           <form onSubmit={handleSubmit} className="space-y-4">
+            <label htmlFor="journalTextarea" className="sr-only">Daily reflection text entry</label>
             <textarea
+              id="journalTextarea"
               placeholder="How are you feeling today? What cues triggered cravings, and how did you manage them? Write down any negative thoughts to reframe..."
               rows={4}
               value={content}
@@ -142,7 +147,7 @@ export default function JournalPage() {
 
                 {/* Content */}
                 <p className="text-sm text-slate-300 italic leading-relaxed">
-                  "{entry.content}"
+                  &quot;{entry.content}&quot;
                 </p>
 
                 {/* Trigger tags */}
@@ -170,7 +175,7 @@ export default function JournalPage() {
                           Type: <span className="text-indigo-400">{d.type}</span>
                         </div>
                         <div className="text-xs text-slate-400 italic">
-                          Quote: "{d.quote}"
+                          Quote: &quot;{d.quote}&quot;
                         </div>
                         <div className="text-xs text-teal-400 font-medium bg-teal-500/5 p-2 rounded border border-teal-500/10 leading-relaxed">
                           Reframed Thought: {d.reframe}

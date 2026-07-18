@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Brain, LayoutDashboard, MessageSquareText, FileText, AlertTriangle, LogOut, Flame } from 'lucide-react';
+import { Brain, LayoutDashboard, MessageSquareText, FileText, AlertTriangle, Flame } from 'lucide-react';
 import { useStore } from '@/store/useStore';
 
 interface SidebarProps {

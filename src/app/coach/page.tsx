@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import Sidebar from '@/components/dashboard/Sidebar';
-import { useStore, ChatMessage } from '@/store/useStore';
+import { useStore } from '@/store/useStore';
 import { Send, Sparkles, Brain, AlertOctagon, HeartHandshake } from 'lucide-react';
 
 export default function CoachPage() {
@@ -13,7 +13,10 @@ export default function CoachPage() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setMounted(true);
+    const timer = setTimeout(() => {
+      setMounted(true);
+    }, 0);
+    return () => clearTimeout(timer);
   }, []);
 
   // Auto-scroll chat window
@@ -160,9 +163,11 @@ export default function CoachPage() {
           <div ref={scrollRef} />
         </div>
 
-        {/* Input Bar Form */}
+         {/* Input Bar Form */}
         <form onSubmit={handleSend} className="relative mt-2">
+          <label htmlFor="coachMessageInput" className="sr-only">Message to AI Coach</label>
           <input
+            id="coachMessageInput"
             type="text"
             placeholder="Type craving trigger context or message to your Coach..."
             value={input}
@@ -173,6 +178,7 @@ export default function CoachPage() {
           <button
             type="submit"
             disabled={!input.trim() || loading}
+            aria-label="Send message to AI Coach"
             className="absolute right-3 top-2.5 p-2 rounded-xl bg-indigo-600 text-white hover:bg-indigo-500 transition disabled:opacity-40 disabled:hover:bg-indigo-600"
           >
             <Send className="h-4.5 w-4.5" />

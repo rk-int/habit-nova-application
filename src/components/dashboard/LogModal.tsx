@@ -42,6 +42,7 @@ export default function LogModal({ isOpen, onClose }: LogModalProps) {
           <h2 className="font-display text-lg font-bold text-white">Log Craving & Activity</h2>
           <button 
             onClick={onClose}
+            aria-label="Close log dialog"
             className="text-slate-400 hover:text-slate-200 p-1 hover:bg-white/5 rounded-lg"
           >
             <X className="h-5 w-5" />
@@ -53,8 +54,9 @@ export default function LogModal({ isOpen, onClose }: LogModalProps) {
           
           {/* Habit Category */}
           <div>
-            <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Target Behavior</label>
+            <label htmlFor="habitTypeSelect" className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Target Behavior</label>
             <select
+              id="habitTypeSelect"
               value={habitType}
               onChange={(e) => setHabitType(e.target.value)}
               className="w-full bg-slate-900 border border-white/10 rounded-xl px-4 py-3 text-slate-200 text-sm focus:border-indigo-500 focus:outline-none"
@@ -70,10 +72,11 @@ export default function LogModal({ isOpen, onClose }: LogModalProps) {
           {/* Craving Severity */}
           <div>
             <div className="flex justify-between items-center mb-2">
-              <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider">Craving Intensity</label>
+              <label htmlFor="intensitySlider" className="block text-xs font-semibold text-slate-400 uppercase tracking-wider">Craving Intensity</label>
               <span className="text-sm font-bold text-indigo-400">{severity} / 10</span>
             </div>
             <input
+              id="intensitySlider"
               type="range"
               min="1"
               max="10"
@@ -120,8 +123,9 @@ export default function LogModal({ isOpen, onClose }: LogModalProps) {
 
           {/* Trigger Context */}
           <div>
-            <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Environmental Trigger (Optional)</label>
+            <label htmlFor="triggerInput" className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Environmental Trigger (Optional)</label>
             <input
+              id="triggerInput"
               type="text"
               placeholder="e.g. boredom, late-night screens, meeting fatigue"
               value={trigger}
@@ -132,8 +136,9 @@ export default function LogModal({ isOpen, onClose }: LogModalProps) {
 
           {/* Notes */}
           <div>
-            <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Notes / Context (Optional)</label>
+            <label htmlFor="notesTextarea" className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Notes / Context (Optional)</label>
             <textarea
+              id="notesTextarea"
               placeholder="How did you cope or react?"
               rows={2}
               value={notes}

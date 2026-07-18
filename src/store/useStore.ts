@@ -168,7 +168,7 @@ export const useStore = create<AppState>()(
         ]
       })),
 
-      clearChats: () => set((state) => ({
+      clearChats: () => set(() => ({
         chats: [
           {
             id: 'chat-init',

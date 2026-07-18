@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ArrowRight, Brain, Activity, ShieldAlert, HeartHandshake, Sparkles, Sun, Moon } from 'lucide-react';
+import { ArrowRight, Brain, Activity, ShieldAlert, Sparkles, Sun, Moon } from 'lucide-react';
 import { useStore } from '@/store/useStore';
 
 export default function LandingPage() {
@@ -10,7 +10,10 @@ export default function LandingPage() {
   const { theme, toggleTheme } = useStore();
 
   useEffect(() => {
-    setMounted(true);
+    const timer = setTimeout(() => {
+      setMounted(true);
+    }, 0);
+    return () => clearTimeout(timer);
   }, []);
 
   const isDark = theme === 'dark';
@@ -27,6 +30,7 @@ export default function LandingPage() {
           loop
           muted
           playsInline
+          aria-hidden="true"
           className={`absolute inset-0 w-full h-full object-cover z-0 transition-all duration-1000 ${
             isDark ? 'opacity-80' : 'opacity-95'
           }`}

@@ -8,7 +8,7 @@ import * as THREE from 'three';
 function FloatingNode({ mouse }: { mouse: React.MutableRefObject<[number, number]> }) {
   const meshRef = useRef<THREE.Mesh>(null);
   
-  useFrame((state) => {
+  useFrame(() => {
     if (!meshRef.current) return;
     
     // Auto-rotation

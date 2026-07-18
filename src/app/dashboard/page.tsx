@@ -15,7 +15,10 @@ export default function Dashboard() {
   const riskLevel = getRiskLevel();
 
   useEffect(() => {
-    setIsMounted(true);
+    const timer = setTimeout(() => {
+      setIsMounted(true);
+    }, 0);
+    return () => clearTimeout(timer);
   }, []);
 
   // Format Recharts data (last 7 logs, ordered chronological)
@@ -28,7 +31,6 @@ export default function Dashboard() {
       status: log.status
     }));
 
-  const recentSlips = logs.filter(l => l.status === 'Slipped').slice(0, 3);
   const totalResisted = logs.filter(l => l.status === 'Resisted').length;
 
   // Adaptive recommendation depending on risk level
@@ -170,7 +172,7 @@ export default function Dashboard() {
                 </ResponsiveContainer>
               ) : (
                 <div className="h-full flex items-center justify-center text-xs text-slate-600">
-                  No tracking logs recorded yet. Click '+ Log Cravings' above.
+                  No tracking logs recorded yet. Click &apos;+ Log Cravings&apos; above.
                 </div>
               )}
             </div>
