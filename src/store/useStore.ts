@@ -46,6 +46,7 @@ interface AppState {
   logs: HabitLog[];
   chats: ChatMessage[];
   journals: JournalEntry[];
+  theme: 'dark' | 'light';
   
   // Actions
   setUserName: (name: string) => void;
@@ -54,6 +55,7 @@ interface AppState {
   addJournalEntry: (entry: Omit<JournalEntry, 'id' | 'createdAt'>) => void;
   clearChats: () => void;
   getRiskLevel: () => 'Low' | 'Medium' | 'High';
+  toggleTheme: () => void;
 }
 
 export const useStore = create<AppState>()(
@@ -61,6 +63,8 @@ export const useStore = create<AppState>()(
     (set, get) => ({
       userId: 'mock-user-123',
       userName: 'Alex',
+      theme: 'dark',
+      toggleTheme: () => set((state) => ({ theme: state.theme === 'dark' ? 'light' : 'dark' })),
       streakScore: 4,
       maxStreak: 12,
       logs: [
