@@ -70,6 +70,7 @@ export default function Sidebar({ onOpenLogModal }: SidebarProps) {
         {onOpenLogModal && (
           <button
             onClick={onOpenLogModal}
+            aria-label="Log cravings or resilient actions"
             className="w-full py-3 rounded-xl bg-white/5 hover:bg-white/10 text-white font-medium border border-white/10 text-sm transition-all"
           >
             + Log Cravings
@@ -91,7 +92,11 @@ export default function Sidebar({ onOpenLogModal }: SidebarProps) {
 
         {/* Quick User Badge */}
         <div className="flex items-center gap-3 pt-4 border-t border-white/5 text-xs text-slate-500">
-          <div className="h-6 w-6 rounded-full bg-indigo-900 flex items-center justify-center text-[10px] font-bold text-indigo-300">
+          <div 
+            role="img" 
+            aria-label="Avatar for user Alex"
+            className="h-6 w-6 rounded-full bg-indigo-900 flex items-center justify-center text-[10px] font-bold text-indigo-300"
+          >
             AX
           </div>
           <div>

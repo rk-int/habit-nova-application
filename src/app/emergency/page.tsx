@@ -126,20 +126,28 @@ export default function EmergencyPage() {
               If cravings feel physically unmanageable, or severe withdrawal risk occurs, consult local healthcare support lines immediately:
             </p>
             <div className="space-y-2 text-xs">
-              <div className="p-3 rounded-xl bg-white/5 border border-white/5 flex justify-between items-center">
+              <a 
+                href="tel:988" 
+                className="p-3 rounded-xl bg-white/5 border border-white/5 flex justify-between items-center hover:bg-white/10 transition duration-150 block text-left"
+                aria-label="Call Suicide & Crisis Lifeline at 988"
+              >
                 <div>
                   <div className="font-bold text-slate-200">Suicide & Crisis Lifeline</div>
                   <div className="text-[10px] text-slate-500">Available 24/7 in USA & Canada</div>
                 </div>
                 <span className="text-indigo-400 font-extrabold text-sm">Call/Text 988</span>
-              </div>
-              <div className="p-3 rounded-xl bg-white/5 border border-white/5 flex justify-between items-center">
+              </a>
+              <a 
+                href="tel:1-800-662-4357" 
+                className="p-3 rounded-xl bg-white/5 border border-white/5 flex justify-between items-center hover:bg-white/10 transition duration-150 block text-left"
+                aria-label="Call SAMHSA Helpline at 1-800-662-4357"
+              >
                 <div>
                   <div className="font-bold text-slate-200">SAMHSA Helpline</div>
                   <div className="text-[10px] text-slate-500">Substance abuse treatment referral</div>
                 </div>
-                <span className="text-indigo-400 font-extrabold text-sm">1-800-662-4357</span>
-              </div>
+                <span className="text-indigo-400 font-extrabold text-sm">Call 1-800-662-4357</span>
+              </a>
             </div>
           </div>
 
