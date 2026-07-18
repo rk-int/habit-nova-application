@@ -1,14 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { analyzeJournal } from '@/lib/gemini';
+import { z } from 'zod';
+
+const journalSchema = z.object({
+  content: z.string().min(1).max(4000)
+});
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { content } = body;
+    const parseResult = journalSchema.safeParse(body);
 
-    if (!content || typeof content !== 'string') {
-      return NextResponse.json({ error: 'Journal content is required' }, { status: 400 });
+    if (!parseResult.success) {
+      return NextResponse.json({ error: 'Invalid payload parameters' }, { status: 400 });
     }
+
+    const { content } = parseResult.data;
 
     // Call Gemini
     const journalResult = await analyzeJournal(content);

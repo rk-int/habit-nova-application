@@ -1,14 +1,28 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
+import { z } from 'zod';
+
+const habitLogSchema = z.object({
+  habitType: z.enum(['Screen Time', 'Caffeine', 'Nicotine', 'Sugar', 'Substance']),
+  severity: z.union([
+    z.number().int().min(1).max(10),
+    z.string().transform(v => parseInt(v)).refine(v => v >= 1 && v <= 10)
+  ]),
+  status: z.enum(['Resisted', 'Slipped']),
+  trigger: z.string().max(300).optional(),
+  notes: z.string().max(500).optional()
+});
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { habitType, severity, status, trigger, notes } = body;
+    const parseResult = habitLogSchema.safeParse(body);
 
-    if (!habitType || !severity || !status) {
-      return NextResponse.json({ error: 'Missing habitType, severity, or status' }, { status: 400 });
+    if (!parseResult.success) {
+      return NextResponse.json({ error: 'Invalid payload parameters' }, { status: 400 });
     }
+
+    const { habitType, severity, status, trigger, notes } = parseResult.data;
 
     const userId = 'mock-user-123';
 
@@ -34,7 +48,7 @@ export async function POST(req: NextRequest) {
       data: {
         userId,
         habitType,
-        severity: parseInt(severity),
+        severity: severity,
         status,
         trigger: trigger || null,
         notes: notes || null

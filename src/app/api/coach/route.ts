@@ -1,15 +1,25 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { askGeminiCoach } from '@/lib/gemini';
+import { z } from 'zod';
+
+const coachSchema = z.object({
+  message: z.string().min(1).max(2000),
+  history: z.array(z.object({
+    role: z.enum(['user', 'assistant']),
+    content: z.string().min(1).max(2000)
+  })).optional()
+});
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { message, history } = body;
+    const parseResult = coachSchema.safeParse(body);
 
-    if (!message || typeof message !== 'string') {
-      return NextResponse.json({ error: 'Message payload is required' }, { status: 400 });
+    if (!parseResult.success) {
+      return NextResponse.json({ error: 'Invalid payload parameters' }, { status: 400 });
     }
 
+    const { message, history } = parseResult.data;
     const formattedHistory = Array.isArray(history) ? history : [];
     
     // Call Gemini
