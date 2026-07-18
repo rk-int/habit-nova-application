@@ -96,9 +96,12 @@ export default function Dashboard() {
         <div className={`p-5 rounded-2xl border flex gap-4 items-start ${nudge.color}`}>
           <NudgeIcon className="h-6 w-6 flex-shrink-0 mt-0.5" />
           <div>
-            <h4 className="font-bold text-sm text-white flex items-center gap-1.5">
+            <h4 className="font-bold text-sm text-white flex items-center gap-1.5 flex-wrap">
               <Lightbulb className="h-4 w-4" />
-              {nudge.title}
+              <span>{nudge.title}</span>
+              <span className="text-[10px] px-2 py-0.5 rounded bg-white/10 border border-white/5 font-semibold text-slate-300">
+                AI Recovery Plan
+              </span>
             </h4>
             <p className="text-sm mt-1 leading-relaxed opacity-90">{nudge.desc}</p>
           </div>
