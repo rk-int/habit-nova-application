@@ -20,7 +20,7 @@ export default function LandingPage() {
       isDark ? 'bg-slate-950 text-slate-100' : 'bg-slate-50 text-slate-950'
     }`}>
       
-      {/* Background Video Layer - Higher visibility (opacity-65) */}
+      {/* Background Video Layer - High visibility and stunning resolution */}
       {mounted && (
         <video
           autoPlay
@@ -28,33 +28,33 @@ export default function LandingPage() {
           muted
           playsInline
           className={`absolute inset-0 w-full h-full object-cover z-0 transition-all duration-1000 ${
-            isDark ? 'opacity-55' : 'opacity-65'
+            isDark ? 'opacity-80' : 'opacity-95'
           }`}
         >
           <source src="/AI_platform_hero_video_1080p_202607181210.mp4" type="video/mp4" />
         </video>
       )}
 
-      {/* Theme-Adaptive Legibility Mask */}
+      {/* Subtle overlay mask to blend video edges */}
       <div className={`absolute inset-0 z-0 pointer-events-none transition-all duration-500 ${
         isDark 
-          ? 'bg-gradient-to-b from-slate-950/45 via-slate-950/65 to-slate-950' 
-          : 'bg-gradient-to-b from-slate-50/45 via-slate-50/65 to-slate-50'
+          ? 'bg-gradient-to-b from-slate-950/20 via-slate-950/30 to-slate-950/80' 
+          : 'bg-gradient-to-b from-slate-50/15 via-slate-50/25 to-slate-50/75'
       }`} />
       
-      {/* Aurora overlays */}
+      {/* Glow Auroras */}
       <div className={`absolute -top-40 -left-40 h-[600px] w-[600px] rounded-full pointer-events-none transition-opacity duration-500 ${
-        isDark ? 'bg-indigo-500/10 blur-[120px]' : 'bg-indigo-500/5 blur-[100px]'
+        isDark ? 'bg-indigo-500/10 blur-[150px]' : 'bg-indigo-500/5 blur-[120px]'
       }`} />
       <div className={`absolute -bottom-40 -right-40 h-[600px] w-[600px] rounded-full pointer-events-none transition-opacity duration-500 ${
-        isDark ? 'bg-teal-500/10 blur-[120px]' : 'bg-teal-500/5 blur-[100px]'
+        isDark ? 'bg-teal-500/10 blur-[150px]' : 'bg-teal-500/5 blur-[120px]'
       }`} />
 
       {/* Navigation Header */}
       <header className="relative z-10 mx-auto max-w-7xl w-full px-6 py-6 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <Brain className={`h-7 w-7 ${isDark ? 'text-indigo-500' : 'text-indigo-600'}`} />
-          <span className={`font-display font-bold text-xl tracking-tight ${
+        <div className="flex items-center gap-2 p-2 rounded-full backdrop-blur-md bg-slate-900/10 border border-white/5">
+          <Brain className={`h-6 w-6 ${isDark ? 'text-indigo-400' : 'text-indigo-600'}`} />
+          <span className={`font-display font-bold text-lg tracking-tight pr-2 ${
             isDark 
               ? 'bg-gradient-to-r from-indigo-200 via-slate-200 to-teal-200 bg-clip-text text-transparent' 
               : 'text-slate-900'
@@ -68,10 +68,10 @@ export default function LandingPage() {
           {mounted && (
             <button
               onClick={toggleTheme}
-              className={`p-2.5 rounded-full border transition duration-200 flex items-center justify-center ${
+              className={`p-2.5 rounded-full border transition duration-200 flex items-center justify-center backdrop-blur-md ${
                 isDark 
-                  ? 'bg-white/5 border-white/10 text-amber-400 hover:bg-white/10' 
-                  : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50 shadow-sm'
+                  ? 'bg-slate-950/50 border-white/10 text-amber-400 hover:bg-slate-950/75' 
+                  : 'bg-white/80 border-slate-200 text-slate-700 hover:bg-white shadow-sm'
               }`}
               aria-label="Toggle visual theme"
             >
@@ -81,10 +81,10 @@ export default function LandingPage() {
 
           <Link 
             href="/dashboard"
-            className={`px-5 py-2.5 rounded-full text-xs font-semibold border transition duration-200 ${
+            className={`px-5 py-2.5 rounded-full text-xs font-semibold border transition duration-200 backdrop-blur-md ${
               isDark 
-                ? 'glass-panel border-white/10 text-white hover:bg-white/5' 
-                : 'bg-white border-slate-200 text-slate-800 hover:bg-slate-50 shadow-sm'
+                ? 'bg-slate-950/50 border-white/10 text-white hover:bg-slate-950/75' 
+                : 'bg-white/80 border-slate-200 text-slate-800 hover:bg-white shadow-sm'
             }`}
           >
             Launch Portal
@@ -92,64 +92,60 @@ export default function LandingPage() {
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="relative z-10 flex-grow flex flex-col items-center justify-center text-center px-6 max-w-4xl mx-auto py-16">
-        
-        {/* Dynamic Badge */}
-        <div className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold mb-6 backdrop-blur-md border ${
+      {/* Hero Section - Wrapped in a floating glassmorphic container */}
+      <section className="relative z-10 flex-grow flex flex-col items-center justify-center px-6 max-w-4xl mx-auto py-12">
+        <div className={`p-8 md:p-12 rounded-3xl border transition duration-500 backdrop-blur-lg flex flex-col items-center text-center ${
           isDark 
-            ? 'bg-indigo-500/10 border-indigo-500/20 text-indigo-300' 
-            : 'bg-indigo-500/5 border-indigo-500/10 text-indigo-700'
+            ? 'bg-slate-950/65 border-white/10 shadow-[0_0_60px_rgba(0,0,0,0.6)]' 
+            : 'bg-white/75 border-slate-200/80 shadow-[0_10px_50px_rgba(0,0,0,0.08)]'
         }`}>
-          <Sparkles className="h-3.5 w-3.5" />
-          Empathetic Generative Behavioral Support
-        </div>
+          
+          {/* Dynamic Badge */}
+          <div className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold mb-6 border ${
+            isDark 
+              ? 'bg-indigo-500/10 border-indigo-500/20 text-indigo-300' 
+              : 'bg-indigo-500/5 border-indigo-500/10 text-indigo-700'
+          }`}>
+            <Sparkles className="h-3.5 w-3.5" />
+            Empathetic Generative Behavioral Support
+          </div>
 
-        {/* Hero Title */}
-        <h1 className={`font-display text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-[1.08] select-none ${
-          isDark ? 'text-white' : 'text-slate-900'
-        }`}>
-          Reframe Your Habits.<br />
-          <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-teal-500 bg-clip-text text-transparent">
-            Restore Your Resilience.
-          </span>
-        </h1>
+          {/* Hero Title */}
+          <h1 className={`font-display text-4xl md:text-6xl font-bold tracking-tight mb-6 leading-[1.1] select-none ${
+            isDark ? 'text-white' : 'text-slate-900'
+          }`}>
+            Reframe Your Habits.<br />
+            <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-teal-500 bg-clip-text text-transparent">
+              Restore Your Resilience.
+            </span>
+          </h1>
 
-        {/* Subtitle */}
-        <p className={`text-sm md:text-lg max-w-2xl mb-10 leading-relaxed font-light ${
-          isDark ? 'text-slate-400' : 'text-slate-600'
-        }`}>
-          HabitNova AI combines cognitive-behavioral science with real-time AI coaching to help you moderation-track, understand cravings, and shift addictive behaviors without the shame.
-        </p>
+          {/* Subtitle */}
+          <p className={`text-sm md:text-base max-w-xl mb-8 leading-relaxed font-light ${
+            isDark ? 'text-slate-300' : 'text-slate-600'
+          }`}>
+            HabitNova AI combines cognitive-behavioral science with real-time AI coaching to help you moderation-track, understand cravings, and shift addictive behaviors without the shame.
+          </p>
 
-        {/* CTAs */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center w-full max-w-xs sm:max-w-none">
-          <Link
-            href="/dashboard"
-            className={`inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-medium transition-all duration-300 group ${
-              isDark 
-                ? 'bg-indigo-600 text-white hover:bg-indigo-500 hover:shadow-[0_0_25px_rgba(99,102,241,0.5)]' 
-                : 'bg-indigo-600 text-white hover:bg-indigo-700 shadow-md hover:shadow-lg'
-            }`}
-          >
-            Start Free Journey
-            <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-          </Link>
-          <Link
-            href="#features"
-            className={`inline-flex items-center justify-center px-8 py-4 rounded-full font-medium transition-all border ${
-              isDark 
-                ? 'bg-white/5 hover:bg-white/10 border-white/10 text-slate-200 backdrop-blur-md' 
-                : 'bg-white hover:bg-slate-50 border-slate-200 text-slate-700 shadow-sm'
-            }`}
-          >
-            Explore Methodology
-          </Link>
+          {/* CTAs */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center w-full max-w-xs">
+            <Link
+              href="/dashboard"
+              className={`inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-medium transition-all duration-300 group ${
+                isDark 
+                  ? 'bg-indigo-600 text-white hover:bg-indigo-500 hover:shadow-[0_0_20px_rgba(99,102,241,0.4)]' 
+                  : 'bg-indigo-600 text-white hover:bg-indigo-700 shadow-md hover:shadow-lg'
+              }`}
+            >
+              Start Free Journey
+              <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
         </div>
       </section>
 
       {/* Value Proposition Cards */}
-      <section id="features" className="relative z-10 max-w-7xl mx-auto w-full px-6 pb-20 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <section id="features" className="relative z-10 max-w-7xl mx-auto w-full px-6 pb-16 grid grid-cols-1 md:grid-cols-3 gap-6">
         
         <div className={`p-8 rounded-2xl border transition duration-300 ${
           isDark 
