@@ -18,7 +18,7 @@
 
 ---
 
-### 🏆 Built for GenAI Hackathon • Production-Ready • Apple-Inspired Experience
+### 🏆 Built for GenAI Hackathon • Production-Ready
 
 <img src="docs/demo.gif" width="100%">
 
