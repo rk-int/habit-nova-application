@@ -1,6 +1,6 @@
 <p align="center">
 
-# 🧠 MindShift AI
+# 🧠 Habit Nova AI
 
 ### AI-Powered Behavioral Intelligence Platform for Breaking Harmful Habits
 
