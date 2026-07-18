@@ -205,7 +205,7 @@ export default function Dashboard() {
                     </div>
                   )}
                   <div className="text-[10px] text-slate-500 mt-1">
-                    {new Date(log.createdAt).toLocaleDateString()} at {new Date(log.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                    {isMounted ? `${new Date(log.createdAt).toLocaleDateString()} at ${new Date(log.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}` : ''}
                   </div>
                 </div>
               ))}

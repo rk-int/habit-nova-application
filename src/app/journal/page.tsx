@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Sidebar from '@/components/dashboard/Sidebar';
 import { useStore, JournalEntry } from '@/store/useStore';
 import { BookOpen, Sparkles, Smile, ShieldAlert, AlertTriangle } from 'lucide-react';
@@ -9,6 +9,11 @@ export default function JournalPage() {
   const { journals, addJournalEntry } = useStore();
   const [content, setContent] = useState('');
   const [loading, setLoading] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -126,7 +131,7 @@ export default function JournalPage() {
                 {/* Meta details */}
                 <div className="flex flex-wrap items-center justify-between gap-3 text-xs border-b border-white/5 pb-3">
                   <span className="text-slate-400 font-semibold">
-                    {new Date(entry.createdAt).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+                    {mounted ? new Date(entry.createdAt).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) : ''}
                   </span>
                   
                   {/* Sentiment tag */}

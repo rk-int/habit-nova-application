@@ -9,7 +9,12 @@ export default function CoachPage() {
   const { chats, addChatMessage } = useStore();
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Auto-scroll chat window
   useEffect(() => {
@@ -134,7 +139,7 @@ export default function CoachPage() {
                 )}
 
                 <span className="text-[10px] text-slate-600 mt-1 px-1">
-                  {new Date(chat.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                  {mounted ? new Date(chat.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : ''}
                 </span>
               </div>
             );
