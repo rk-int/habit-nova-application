@@ -1,0 +1,63 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id           String        @id @default(uuid())
+  email        String        @unique
+  name         String?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  logs         HabitLog[]
+  journals     Journal[]
+  chats        ChatMessage[]
+  streakScore  Int           @default(0)
+  maxStreak    Int           @default(0)
+  lastLogDate  DateTime?
+}
+
+model HabitLog {
+  id          String   @id @default(uuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  habitType   String   // e.g. "Screen Time", "Caffeine", "Substance"
+  severity    Int      // 1-10 craving scale
+  status      String   // "Resisted" or "Slipped"
+  trigger     String?  // Environmental trigger text
+  notes       String?
+  createdAt   DateTime @default(now())
+}
+
+model Journal {
+  id             String             @id @default(uuid())
+  userId         String
+  user           User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  content        String             // Raw journal text
+  sentimentScore Int                // 1-10 analyzed score
+  coachingTip    String?            // AI-generated guidance
+  createdAt      DateTime           @default(now())
+  distortions    CognitiveDistortion[]
+}
+
+model CognitiveDistortion {
+  id          String   @id @default(uuid())
+  journalId   String
+  journal     Journal  @relation(fields: [journalId], references: [id], onDelete: Cascade)
+  type        String   // e.g. "Catastrophizing"
+  quote       String   // Original user snippet
+  reframe     String   // CBT Reframed prompt
+}
+
+model ChatMessage {
+  id        String   @id @default(uuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role      String   // "user" or "assistant"
+  content   String
+  createdAt DateTime @default(now())
+}
